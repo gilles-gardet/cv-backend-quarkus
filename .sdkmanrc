@@ -1,0 +1,6 @@
+# Enable auto-env through the sdkman_auto_env config
+# Add key=value pairs of SDKs to use below
+java=17.0.3-tem
+maven=3.8.6
+kotlin=1.6.21
+quarkus=2.9.2.Final
