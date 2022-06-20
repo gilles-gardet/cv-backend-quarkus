@@ -58,3 +58,9 @@ If you want to learn more about building native executables, please consult http
 Easily start your Reactive RESTful Web Services
 
 [Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+
+## SSL certificate
+
+To generate a self signed
+certificate : `keytool -genkey -alias localhost -keyalg RSA -keystore keycloak.jks -validity 10950`
+https://wjw465150.gitbooks.io/keycloak-documentation/content/server_installation/topics/network/https.html 

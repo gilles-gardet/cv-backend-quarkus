@@ -1,0 +1,44 @@
+version: '3.8'
+services:
+  postgres:
+    container_name: cv-database
+    image: postgres:14.4
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRESQL_DB}
+      POSTGRES_USER: ${POSTGRESQL_USER}
+      POSTGRES_PASSWORD: ${POSTGRESQL_PASS}
+    ports:
+      - "5432:5432"
+    networks:
+      - docker-network
+    volumes:
+      - ./db:/var/lib/postgresql/data/
+  keycloak:
+    container_name: cv-openid
+    image: quay.io/keycloak/keycloak:18.0.2
+    restart: unless-stopped
+    environment:
+      KC_DB: postgres
+      KC_HOSTNAME: localhost
+      KC_DB_URL: jdbc:postgresql://postgres:5432/${POSTGRESQL_DB}
+      KC_DB_USERNAME: ${POSTGRESQL_USER}
+      KC_DB_PASSWORD: ${POSTGRESQL_PASS}
+      KEYCLOAK_USER: ${KEYCLOAK_USER}
+      KEYCLOAK_PASSWORD: ${KEYCLOAK_PASS}
+      KEYCLOAK_ADMIN: ${KEYCLOAK_USER}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_PASS}
+    command:
+      - "start-dev"
+    ports:
+      - "8081:8080"
+    depends_on:
+      - postgres
+    networks:
+      - docker-network
+networks:
+  docker-network:
+    driver: bridge
+volumes:
+  postgres:
+    driver: local
