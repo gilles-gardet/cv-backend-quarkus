@@ -2,7 +2,6 @@ package org.ggardet.experience.web
 
 import org.ggardet.experience.entity.Mission
 import org.ggardet.experience.repository.MissionRepository
-import java.time.LocalDate
 import javax.annotation.security.RolesAllowed
 import javax.inject.Inject
 import javax.transaction.Transactional
@@ -23,14 +22,7 @@ class ExperienceController {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    fun createExperience(): Mission {
-        val mission = Mission(
-            "Air France" + LocalDate.now(),
-            LocalDate.now(),
-            LocalDate.now(),
-            "test",
-            "My first persisted mission",
-        )
+    fun createExperience(mission: Mission): Mission {
         missionRepository.persist(mission)
         return mission
     }

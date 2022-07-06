@@ -2,7 +2,7 @@ package org.ggardet.experience.model
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-data class Experience(
+data class ExperienceDTO(
     @field:JsonProperty("name")
     val name: String? = null,
 

@@ -18,7 +18,5 @@ class AuthenticationController {
     @Path("/me")
     @RolesAllowed("USER")
     @NoCache
-    fun me(): User? {
-        return User(identity)
-    }
+    fun me(): User? = User(identity)
 }
