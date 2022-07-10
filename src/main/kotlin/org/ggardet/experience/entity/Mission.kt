@@ -7,20 +7,11 @@ import javax.persistence.Entity
 
 @Entity
 data class Mission(
-    @field:JsonProperty("client")
-    val client: String? = null,
-
-    @field:JsonProperty("startDate")
-    val startDate: LocalDate? = null,
-
-    @field:JsonProperty("endDate")
-    val endDate: LocalDate? = null,
-
-    @field:JsonProperty("timelapse")
-    val timelapse: String? = null,
-
-    @field:JsonProperty("description")
-    val description: String? = null,
+    val client: String,
+    val startDate: LocalDate,
+    val endDate: LocalDate,
+    val timelapse: String,
+    val description: String,
 ) : PanacheEntity() {
     constructor() : this("", LocalDate.now(), LocalDate.now(), "", "")
 }
